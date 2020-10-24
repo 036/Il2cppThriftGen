@@ -1,6 +1,8 @@
 # Il2CppThriftGen
 Il2CppThriftGen helps you generate .thrift files from C# POCOs so you can use the thrift generator to create working Thrift classes.
 
+The current intended use is to use this with Il2cppInspector however in the future this will be adapted to take already C# exported classes.
+
 ## Todo
 - [ ] Refactor
 - [ ] Generate DataMemberAttribute Ordering
