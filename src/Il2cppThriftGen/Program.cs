@@ -52,6 +52,7 @@ namespace Il2cppThriftGen
                 var name = message.CSharpName;
                 var fields = message.DeclaredFields.Where(f => f.CustomAttributes.Any(a => a.AttributeType.FullName == dataMember));
                 var props = message.DeclaredProperties.Where(p => p.CustomAttributes.Any(a => a.AttributeType.FullName == dataMember));
+
                 var thrift = new StringBuilder();
                 thrift.Append($"struct {name} {{\n");
 
@@ -59,15 +60,16 @@ namespace Il2cppThriftGen
                 foreach (var field in fields)
                 {
                     var pmAtt = field.CustomAttributes.First(a => a.AttributeType.FullName == dataMember);
-                    thriftTypes.TryGetValue(field.FieldType.FullName ?? string.Empty, out var protoTypeName);
-                    thrift.Append($"  {protoTypeName ?? field.FieldType.Name} {field.Name} ;\n");
+                    thriftTypes.TryGetValue(field.FieldType.FullName ?? string.Empty, out var thriftTypeName);
+                    thrift.Append($"  {thriftTypeName ?? field.FieldType.Name} {field.Name} ;\n");
                 }
 
                 // Output C# properties
                 foreach (var prop in props)
                 {
                     var pmAtt = prop.CustomAttributes.First(a => a.AttributeType.FullName == dataMember);
-                    thrift.Append($"  {prop.PropertyType.Name} {prop.Name};\n");
+                    thriftTypes.TryGetValue(prop.PropertyType.FullName ?? string.Empty, out var thriftTypeName);
+                    thrift.Append($"  {thriftTypeName ?? prop.PropertyType.Name} {prop.Name};\n");
                 }
 
                 thrift.Append("}\n");
