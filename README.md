@@ -5,7 +5,7 @@ The current intended use is to use this with Il2cppInspector however in the futu
 
 ## Todo
 - [ ] Refactor
-- [ ] Generate DataMemberAttribute Ordering
+- [x] Generate DataMemberAttribute Ordering
 - [ ] Output a .thrift file
 - [ ] Output a clean structured .thrift file
 - [ ] Take either .cs files or .so files as input
