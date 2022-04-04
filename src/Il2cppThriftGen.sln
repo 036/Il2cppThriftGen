@@ -1,15 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29926.136
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Il2cppThriftGen", "Il2cppThriftGen\Il2cppThriftGen.csproj", "{627FC719-5CE5-4663-A70D-A20DED0F1E57}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodules", "Submodules", "{55DF187C-506C-4C3B-9A16-57C6DF288C63}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Il2CppInspector", "Il2CppInspector\Il2CppInspector.Common\Il2CppInspector.csproj", "{0513C85F-E3C3-41C0-8444-3643F50B9736}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bin2Object", "Il2CppInspector\Bin2Object\Bin2Object\Bin2Object.csproj", "{B7F0DC1D-7088-4A75-A36F-7A5FFEE7DF08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,21 +15,9 @@ Global
 		{627FC719-5CE5-4663-A70D-A20DED0F1E57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{627FC719-5CE5-4663-A70D-A20DED0F1E57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{627FC719-5CE5-4663-A70D-A20DED0F1E57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0513C85F-E3C3-41C0-8444-3643F50B9736}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0513C85F-E3C3-41C0-8444-3643F50B9736}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0513C85F-E3C3-41C0-8444-3643F50B9736}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0513C85F-E3C3-41C0-8444-3643F50B9736}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7F0DC1D-7088-4A75-A36F-7A5FFEE7DF08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7F0DC1D-7088-4A75-A36F-7A5FFEE7DF08}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7F0DC1D-7088-4A75-A36F-7A5FFEE7DF08}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7F0DC1D-7088-4A75-A36F-7A5FFEE7DF08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{0513C85F-E3C3-41C0-8444-3643F50B9736} = {55DF187C-506C-4C3B-9A16-57C6DF288C63}
-		{B7F0DC1D-7088-4A75-A36F-7A5FFEE7DF08} = {55DF187C-506C-4C3B-9A16-57C6DF288C63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DA5B3B6-39DA-4779-BCF7-EC37076D351C}

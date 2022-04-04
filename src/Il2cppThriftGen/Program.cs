@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using Gee.External.Capstone.Arm;
-using Gee.External.Capstone.X86;
-using Il2CppInspector;
 using Il2CppInspector.Reflection;
 
 namespace Il2cppThriftGen

@@ -2,15 +2,11 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Gee.External.Capstone" Version="2.0.2" />
+    <PackageReference Include="NoisyCowStudios.Il2CppInspector" Version="2021.1.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Il2CppInspector\Il2CppInspector.Common\Il2CppInspector.csproj" />
-  </ItemGroup>
-
 </Project>
