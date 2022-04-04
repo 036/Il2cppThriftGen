@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using Gee.External.Capstone.Arm;
 using Il2CppInspector.Reflection;
+using CommandLine;
+
 
 namespace Il2cppThriftGen
 {
@@ -32,19 +34,24 @@ namespace Il2cppThriftGen
         };
 
         public static int cagCounter = 0;
-
-        public static string MetadataFile = @"global-metadata.dat";
-        public static string BinaryFile = @"libil2cpp.so";
         private static StringBuilder thrift = new StringBuilder();
         private static Dictionary<ulong, int> vaFieldMapping;
         private static CapstoneArmDisassembler asm = Gee.External.Capstone.CapstoneDisassembler.CreateArmDisassembler(Gee.External.Capstone.Arm.ArmDisassembleMode.Arm);
-        private static String outputPath = @"C:\ThriftGen\output.txt";
 
         static void Main(string[] args)
         {
+            Console.WriteLine("=== Il2cppThriftGen by 036(Rob) ===");
+            Console.WriteLine("A tool to generate thrift files from a native IL2CPP file.\n");
+
+            var runTimeArgs = GetRuntimeOptionsFromCommandLine(args);
+        }
+
+        private static void PerformDecompilation(CommandLineArgs commandLineArgs)
+        {
+
             Console.WriteLine("Using Il2cppInspector to read il2cpp.so");
             var package = Il2CppInspector.Il2CppInspector.LoadFromFile(
-                BinaryFile, MetadataFile, silent: true)[0];
+                commandLineArgs.Il2cppFile, commandLineArgs.MetadataFile, silent: true)[0];
 
             Console.WriteLine("Creating type model from Il2cppInspector output");
             var model = new TypeModel(package);
@@ -81,7 +88,7 @@ namespace Il2cppThriftGen
             var dataMember = "DataMemberAttribute";
 
             // Keep a list of all the enums we need to output (HashSet ensures unique values - we only want each enum once!)
-            var enums = new List<TypeInfo>();
+            var enums = new List<Il2CppInspector.Reflection.TypeInfo>();
 
 
             foreach (var message in messages)
@@ -132,7 +139,7 @@ namespace Il2cppThriftGen
             {
                 var match = writtenEnums.FirstOrDefault(writtenEnum => writtenEnum.Contains(e.FullName.Replace(".", "")));
 
-                if(match == null)
+                if (match == null)
                 {
                     enumText.Append("enum " + e.FullName.Replace(".", "") + " {\n");
                     var namesAndValues = e.GetEnumNames().Zip(e.GetEnumValues().Cast<int>(), (n, v) => n + " = " + v);
@@ -145,10 +152,22 @@ namespace Il2cppThriftGen
 
             }
 
-            File.WriteAllText(outputPath, enumText.ToString() + thrift.ToString());
+            File.WriteAllText(commandLineArgs.OutputRootDir, enumText.ToString() + thrift.ToString());
         }
 
-        private static void outputField(string name, TypeInfo type, CustomAttributeData pmAtt, bool addComma)
+        private static CommandLineArgs GetRuntimeOptionsFromCommandLine(string[] commandLine)
+        {
+            var parserResult = Parser.Default.ParseArguments<CommandLineArgs>(commandLine);
+            if (parserResult is NotParsed<CommandLineArgs> notParsed && notParsed.Errors.Count() == 1 && notParsed.Errors.All(e => e.Tag == ErrorType.VersionRequestedError || e.Tag == ErrorType.HelpRequestedError))
+                Environment.Exit(0);
+
+            if (!(parserResult is Parsed<CommandLineArgs> { Value: { } options }))
+                throw new Exception("Failed to parse command line arguments");
+
+            return options;
+        }
+
+        private static void outputField(string name, Il2CppInspector.Reflection.TypeInfo type, CustomAttributeData pmAtt, bool addComma)
         {
             // Handle arrays
             var isRepeated = type.IsArray;

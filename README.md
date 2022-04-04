@@ -9,5 +9,5 @@ The current intended use is to use this with Il2cppInspector however in the futu
 - [ ] Output a .thrift file
 - [ ] Output a clean structured .thrift file
 - [ ] Take either .cs files or .so files as input
-- [ ] Take parameters via the CLI
+- [x] Take parameters via the CLI
 - [ ] GUI?? 
